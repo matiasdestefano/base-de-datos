@@ -1,0 +1,14 @@
+1) Devolver restaurante_id, nombre, barrio y tipo_cocina pero excluyendo _id para un documento
+(el primero)
+
+> db.restaurantes.findOne({}, {"_id":0, "direccion": 0, "grados":0 } )
+
+2) Devolver restaurante_id, nombre, barrio y tipo_cocina para los primeros 3 restaurantes que contengan
+'Bake' en alguna parte de su nombre.
+
+> db.restaurantes.find({"nombre": /.*Bake.*/}, {"_id":0, "direccion": 0, "grados":0 } ).limit(3).pretty()
+
+3) Contar los restaurtantes de comida (tipo_cocina) china (Chinese) o tailandesa (Thai) del barrio
+(barrio) Bronx. (or VS in)
+
+> db.restaurantes.count({tipo_cocina: {$in: ["Chinese","Thai"]}, barrio: "Bronx" })

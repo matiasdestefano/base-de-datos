@@ -1,0 +1,15 @@
+1) Traer restaurantes que hayan recibido al menos una calificación de grado 'A'
+con puntaje mayor a 20. Una misma calificación debe cumplir con ambvas condiciones simultáneamente.
+(elemMatch) 
+
+db.restaurantes.find({ grados: { $elemMatch: {grado:"A", puntaje: {$gt: 20}}}}).pretty()
+
+2) ¿A cuàntos documentos les faltan las coordenadas geográficas? En otras palabras,
+revisar si el tamaño de direccion.coord es 0 y contar.
+
+db.restaurantes.count({"direccion.coord": {$size: 0}})
+
+3) Devolver nombre, barrio_tipo, tipo_cocina y grados para los primeros 3 restaurantes;
+de cada documento solo la última calificación. (SLICE)
+
+db.restaurantes.find({}, {nombre: 1, barrio: 1, tipo_cocina: 1, grados: {$slice: -1}}).limit(3).pretty()

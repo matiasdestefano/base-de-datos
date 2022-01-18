@@ -1,0 +1,72 @@
+1) ¿Cuántas colecciones tiene la base de datos?
+
+Tiene una sola, que es restaurantes.
+
+2) ¿Cuántos documentos en cada colección? ¿Cuánto pesa cada colección?
+
+Con db.restaurantes.count() -> Tenemos 25359 documentos.
+La colección pesa db.restaurantes.dataSize() -> 11.140976 MB
+
+3) ¿Cuántos índices en cada colección? ¿Cuánto espacio ocupan los índices de cada colección?
+
+Existe un único índice en la colección y pesa 266,24 KB.
+
+4) Traer un documento de ejemplo en cada colección.
+
+db.restaurantes.find({"tipo_cocina": "American"}).pretty()
+
+{
+    "_id" : ObjectId("5eb3d668b31de5d588f4294f"),
+        "direccion" : {
+                "edificio" : "625",
+                "coord" : [
+                        -73.990494,
+                        40.7569545
+                ],
+                "calle" : "8 Avenue",
+                "codigo_postal" : "10018"
+        },
+        "barrio" : "Manhattan",
+        "tipo_cocina" : "American",
+        "grados" : [
+                {
+                        "date" : ISODate("2014-06-09T00:00:00Z"),
+                        "grado" : "A",
+                        "puntaje" : 12
+                },
+                {
+                        "date" : ISODate("2014-01-10T00:00:00Z"),
+                        "grado" : "A",
+                        "puntaje" : 9
+                },
+                {
+                        "date" : ISODate("2012-12-07T00:00:00Z"),
+                        "grado" : "A",
+                        "puntaje" : 4
+                },
+                {
+                        "date" : ISODate("2011-12-13T00:00:00Z"),
+                        "grado" : "A",
+                        "puntaje" : 9
+                },
+                {
+                        "date" : ISODate("2011-09-09T00:00:00Z"),
+                        "grado" : "A",
+                        "puntaje" : 13
+                }
+        ],
+        "nombre" : "Cafe Metro",
+        "restaurante_id" : "40363298"
+}
+
+5) Para cada colección, listar los campos a nivel raíz y sus tipos de datos
+
+Con > db.restaurantes.find({}, { "direccion": 0, "grados":0 } ).pretty() podemos hacerlo:
+
+{
+        "_id" : ObjectId("5eb3d668b31de5d588f4299a"),
+        "barrio" : "Bronx",
+        "tipo_cocina" : "American",
+        "nombre" : "Yankee Tavern",
+        "restaurante_id" : "40365499"
+}
